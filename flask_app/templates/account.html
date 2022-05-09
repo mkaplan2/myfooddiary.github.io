@@ -1,0 +1,36 @@
+{% extends "header.html" %}
+{% block content %}
+<div class="row">
+    <div class="col display-4 text-center">
+        <h4>Welcome {{ current_user.username }}</h4>
+    </div>
+    <small class="text-center">
+        <p>I hope your day has been going well!  </p>
+        </p>Have you eaten anything delicious or especially gross lately? </p>
+    </p>If you have, remember to navigate over to the "My Diary" tab to log it!</p>
+    </small>
+</div>
+<div class="row">
+    <div class="col">
+        <form action="" method="post">
+            {{ username_form.csrf_token }}
+            <div class="form-group">
+                {{ username_form.username.label(class="form-control-label") }}
+                {{ username_form.username(class="form-control form-control-lg") }}
+
+                {% if username_form.username.errors %}
+                <div class="alert alert-warning" role="alert">
+                    {% for error in username_form.username.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ username_form.submit }}
+            </div>
+            <div><em>Warning: Make sure to remember your new username. After you update your username, you will be directed to login again with your new username.</em></div>
+        </form>
+    </div>
+</div>
+{% endblock %}

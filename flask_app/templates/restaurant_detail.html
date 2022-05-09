@@ -1,0 +1,60 @@
+{% extends "header.html" %}
+{% block content %}
+
+{% if error_msg %}
+<b>{{ error_msg }}</b>
+{% endif %}
+
+{% if restaurant %} 
+
+{# Display card for the restaurant details #}
+<div class="row">
+  <div class="col">
+    <div class="">
+      <h2 class="display-4 text-center">
+        {{ restaurant.name }}
+      </h2>
+        <p class="text-center"> Sort by: 
+            <a href="{{ url_for('main.restaurant_detail_with_sorting', restaurant=restaurant.name, sorted_by='cost') }}"> 
+                Cost
+            </a> 
+            <a href="{{ url_for('main.restaurant_detail_with_sorting', restaurant=restaurant.name, sorted_by='rating') }}"> 
+                Rating
+            </a> 
+        </p>
+        {#
+        <!--
+        <input type="submit" name="submit_button"  value="cost">Click me</button>
+        -->
+        #}
+    </div>
+  </div>
+</div>
+
+{# Reviews for this this Restaurant #}
+<div class="row">
+  <div class="col-md-12">
+    <div class="text-center"> <em>My diary for {{ restaurant.name }} ...</em></div>
+    <ul class="media-list">
+      {% for review in reviews %}
+      <li class="shadow p-3 rounded mb-5 media review-item">
+        <div class="media-body">
+          <span class="float-right">
+            <small>{{ review.date }}</small>
+          </span>
+
+            <p> Name: {{ review.food }} </p>
+            <p> Cost: {{ review.cost }} </p>
+            <p> Rating: {{ review.rating }} </p>
+            <p> Would get again?: {{ review.would_get_again }} </p>
+            <p> Extra comments: {{ review.extra_comments }} </p>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+
+{% endif %}
+{% endblock content %}

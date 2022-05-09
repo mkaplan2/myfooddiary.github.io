@@ -1,0 +1,29 @@
+{% extends "header.html" %}
+{% block content %}
+<div class="row">
+    <div class="col">
+        <h2 class="display-4 text-center"> Recent Public Posts</h2>
+        <ul class="media-list">
+            {% for entry in public_entries %}
+            <div class="style-list">
+            <li class="shadow p-3 rounded mb-5 media review-item">
+                    <div class="media-body">
+                        <span class="float-right">
+                            <small>{{ entry.commenter.username }}  -   {{ entry.date }}</small>
+                        </span>
+                        <p>Food: {{ entry.food }}</p>
+                        <p> Restaurant: {{ entry.restaurant }} </p>
+                        <p> Cost: {{ entry.cost }} </p>
+                        <p> Rating: {{ entry.rating }} </p>
+                        <p> Would get again?: {{ entry.would_get_again }} </p>
+                        <p> Extra comments: {{ entry.extra_comments }} </p>
+
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

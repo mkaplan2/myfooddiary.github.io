@@ -1,0 +1,34 @@
+{% extends "header.html" %}
+{% block content %}
+<div class="row">
+    <div class="col">
+        <form action="" method="post">
+            {{ update_extra_comments_form.csrf_token }}
+            <div class="form-group">
+                <p>
+                    <p>
+                        <div> Update Your Extra Comments For <strong>{{diary_entry_parameter.food}}</strong> from <strong>{{diary_entry_parameter.restaurant}}</strong> </div>
+                    </p>
+
+                    <div>Your current extra comments for this item are currently:</div>
+                    <div>{{diary_entry_parameter.extra_comments}}</div>
+                </p>
+
+                {{ update_extra_comments_form.extra_comments.label(class="form-control-label") }}
+                {{ update_extra_comments_form.extra_comments(class="form-control form-control-lg") }}
+
+                {% if update_extra_comments_form.extra_comments.errors %}
+                <div class="alert alert-warning" role="alert">
+                    {% for error in update_extra_comments_form.extra_comments.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ update_extra_comments_form.submit }}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

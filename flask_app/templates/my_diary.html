@@ -1,0 +1,216 @@
+{% extends "header.html" %}
+{% block content %}
+<div class="row">
+    <div class="col">
+        <div class="col">
+            <h2 class="display-4 text-center">My Diary Entries</h2>
+        </div>
+        <h4 class="text-center"> <em>Dear Diary...Today I ate...</em></h4>
+        <ul class="media-list">
+            {% for entry in diary_entries %}
+            <li class="shadow p-3 rounded mb-5 media review-item">
+                <div class="media-body">
+                    <span class="float-right">
+                        <small>{{ entry.date }}</small>
+                    </span>
+                    <h4>Food: {{ entry.food }}</h4>
+                    <p> Restaurant: 
+                        <a href="{{ url_for('main.restaurant_detail', restaurant=entry.restaurant) }}"> 
+                            {{ entry.restaurant }} 
+                        </a> 
+                    </p>
+                    <p> Cost: {{ entry.cost }} </p>
+
+                    <p> Rating: {{ entry.rating }} 
+                        <span class="float-right">
+                            <a href="{{ url_for('main.update_rating', food=entry.food, restaurant=entry.restaurant) }}"> 
+                                <small>Update Rating</small>
+                            </a>
+                        </span>
+                    </p>
+
+                    <p> Would get again?: {{ entry.would_get_again }} </p>
+
+                    <p> Extra comments: {{ entry.extra_comments }} 
+                        <span class="float-right">
+                            <a href="{{ url_for('main.update_extra_comments', food=entry.food, restaurant=entry.restaurant) }}"> 
+                                <small>Update Extra Comments</small>
+                            </a>
+                        </span>
+                    </p>
+
+                    <p> Privacy: {{ entry.privacy }} </p>
+
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% if current_user.is_authenticated %}
+{# Diary Entry submission form #}
+
+<div class="row">
+  <div class="col">
+    <div class="col">
+        <h2 class="display-4 text-center">Add A New Entry</h2>
+    </div>
+    <form method="POST" action="">
+      {{ form.csrf_token }}
+
+      {#
+      <div class="form-group">
+        {{ form.text.label }}
+        {{ form.text(class="form-control") }}
+
+        {% if form.text.errors %}
+        <div class="alert alert-warning" role="alert">
+          {% for error in form.text.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+       #}
+
+      {# Food #}
+      <div class="form-group">
+        {{ form.food.label(class="form-control-label") }}
+        {{ form.food(class="form-control form-control-lg") }}
+        {% if form.food.errors %}
+        <div class="alert alert-warning" role="alert">
+            {% for error in form.food.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    {# Restaurant #}
+      <div class="form-group">
+        {{ form.restaurant.label(class="form-control-label") }}
+        {{ form.restaurant(class="form-control form-control-lg") }}
+        {% if form.restaurant.errors %}
+        <div class="alert alert-warning" role="alert">
+            {% for error in form.restaurant.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    {# Cost #}
+      <div class="form-group">
+        {{ form.cost.label(class="form-control-label") }}
+        {{ form.cost(class="form-control form-control-lg") }}
+        {% if form.cost.errors %}
+        <div class="alert alert-warning" role="alert">
+            {% for error in form.cost.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    {# Rating #}
+      <div class="form-group">
+        {{ form.rating.label(class="form-control-label") }}
+
+        <div>
+            {% for subfield in form.rating %}
+                <tr>
+                    <td>{{ subfield }}</td>
+                    <td>{{ subfield.label }}</td>
+                </tr>
+            {% endfor %}
+        </div>
+
+        {# 
+            {{ form.rating(class="form-control form-control-lg") }} 
+        #}
+
+        {% if form.rating.errors %}
+        <div class="alert alert-warning" role="alert">
+            {% for error in form.rating.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    {# extra_comments #}
+      <div class="form-group">
+        {{ form.extra_comments.label(class="form-control-label") }}
+        {{ form.extra_comments(class="form-control form-control-lg") }}
+        {% if form.extra_comments.errors %}
+        <div class="alert alert-warning" role="alert">
+            {% for error in form.extra_comments.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    {# would_get_again #}
+      <div class="form-group">
+        {{ form.would_get_again.label(class="form-check-label") }}
+
+        <div>
+
+            {% for subfield in form.would_get_again %}
+                <tr>
+                    <td>{{ subfield }}</td>
+                    <td>{{ subfield.label }}</td>
+                </tr>
+            {% endfor %}
+        {#
+        {{ form.would_get_again(class="form-control form-control-lg") }}
+        #}
+
+        </div>
+
+        {% if form.would_get_again.errors %}
+        <div class="alert alert-warning" role="alert">
+            {% for error in form.would_get_again.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    {# privacy #}
+      <div class="form-group">
+        {{ form.privacy.label(class="form-check-label") }}
+
+        <div>
+
+            {% for subfield in form.privacy %}
+                <tr>
+                    <td>{{ subfield }}</td>
+                    <td>{{ subfield.label }}</td>
+                </tr>
+            {% endfor %}
+        {#
+        {{ form.privacy(class="form-control form-control-lg") }}
+        #}
+
+        </div>
+
+        {% if form.privacy.errors %}
+        <div class="alert alert-warning" role="alert">
+            {% for error in form.privacy.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    
+      {{ form.submit() }}
+
+    </form>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}
