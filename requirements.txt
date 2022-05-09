@@ -32,3 +32,4 @@ urllib3
 Werkzeug
 WTForms
 Flask-Mail
+gunicorn
