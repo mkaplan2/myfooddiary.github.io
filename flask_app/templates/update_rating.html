@@ -1,0 +1,42 @@
+{% extends "header.html" %}
+{% block content %}
+<div class="row">
+    <div class="col">
+        <form action="" method="post">
+            {{ update_rating_form.csrf_token }}
+            <div class="form-group">
+                <p>
+                    <p>
+                        <div> Update Your Rating For <strong>{{diary_entry_parameter.food}}</strong> from <strong>{{diary_entry_parameter.restaurant}}</strong> </div>
+                    </p>
+
+                    <div>Your current rating for this item is:</div>
+                    <div>{{diary_entry_parameter.rating}}</div>
+                </p>
+
+                {{ update_rating_form.rating.label(class="form-control-label") }}
+
+                <div>
+                    {% for subfield in update_rating_form.rating %}
+                        <tr>
+                            <td>{{ subfield }}</td>
+                            <td>{{ subfield.label }}</td>
+                        </tr>
+                    {% endfor %}
+                </div>
+
+                {% if update_rating_form.rating.errors %}
+                <div class="alert alert-warning" role="alert">
+                    {% for error in update_rating_form.rating.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ update_rating_form.submit }}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

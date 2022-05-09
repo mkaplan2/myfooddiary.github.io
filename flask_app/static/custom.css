@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+movie {
+    max-width: 80;
+    padding: 1; 
+}
+
+.card-body > img {
+    max-width: 200;
+}
+
+.style-list {
+    
+    /* border-top: 1px dashed rgb(150, 150, 150); */
+    font-family: 'Open Sans', Arial, sans-serif;
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+    min-width: 230px;
+    max-width: 315px;
+    width: 100%;
+    color: #141414;
+    text-align: left;
+    line-height: 1.4em;
+    font-size: 14px;
+    box-shadow: none !important;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+.review-item {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    /* border-bottom: 1px dashed #a5a5a5; */
+    width: 100%;
+    background-color: #333333;
+    color: #fff;
+    padding: 25px;
+    display: inline-block;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+.review-item:after {
+    content: '';
+    position: absolute;
+    left: 32px;
+    top: 100%;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 10px 0 10px;
+    border-color: #333333 transparent transparent transparent;
+}
+
+.review-item h3 {
+    font-weight: 600;
+    font-size: 1.2em;
+    font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.review-item h4 {
+    color: #8c8c8c;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.review-item p {
+    font-size: 0.9em;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+.propic {
+    max-width: 50%;
+}
+
+.comment-pic {
+    max-width: 64px;
+}
