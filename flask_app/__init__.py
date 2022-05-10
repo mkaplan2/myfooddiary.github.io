@@ -52,9 +52,9 @@ def page_not_found(e):
 def create_app(test_config=None):
     app = Flask(__name__) #moved up! (to be able to access in other folders)
     app.config.from_pyfile("config.py", silent=False)
-    #app.config["MONGODB_HOST"] = os.getenv("MONGODB_HOST")
+    app.config["MONGODB_HOST"] = os.getenv("MONGODB_HOST")
 
-    app.config["MONGOB_HOST"] = "mongodb+srv://admin_user:ZOS242hRMvGjXLse@cluster0.m04uq.mongodb.net/final_project?retryWrites=true&w=majority" #!!!comment out if need to
+    #app.config["MONGOB_HOST"] = "mongodb+srv://admin_user:ZOS242hRMvGjXLse@cluster0.m04uq.mongodb.net/final_project?retryWrites=true&w=majority" #!!!comment out if need to
     
     if test_config is not None:
         app.config.update(test_config)
